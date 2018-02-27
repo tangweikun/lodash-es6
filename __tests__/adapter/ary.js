@@ -1,4 +1,4 @@
-import { ary } from '../src'
+import { ary } from '../../src'
 
 const firstTwoMax = ary(Math.max, 2)
 
