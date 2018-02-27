@@ -11,7 +11,11 @@
 
 </details>
 
-## 🔌 AdapterCreates a function that accepts up to `n` arguments, ignoring any additional arguments.
+## 🔌 Adapter
+
+### ary
+
+Creates a function that accepts up to `n` arguments, ignoring any additional arguments.
 
 Call the provided function, `fn`, with up to `n` arguments, using `Array.slice(0,n)` and the spread operator (`...`).
 
