@@ -6,7 +6,7 @@
   "author": "tangweikun <819573105@qq.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "watch": "jest --watch"
   },
   "babel": {
     "presets": ["es2015", "stage-2"]
