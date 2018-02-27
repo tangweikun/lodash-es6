@@ -1,5 +1,7 @@
 # snippet-of-javascript
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tangweikun/snippet-of-javascript.svg)](https://greenkeeper.io/)
+
 ## Table of Contents
 
 ### 🔌 Adapter
