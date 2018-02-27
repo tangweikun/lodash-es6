@@ -9,6 +9,7 @@
 
 * [`ary`](#ary)
 * [`call`](#call)
+* [`over`](#over)
 
 </details>
 
@@ -79,6 +80,31 @@ const over = (...fns) => (...args) => fns.map(fn => fn.apply(null, args))
 ```js
 const minMax = over(Math.min, Math.max)
 minMax(1, 2, 3, 4, 5) // [1,5]
+```
+
+</details>
+
+<br>[⬆ Back to top](#table-of-contents)
+
+### overArgs
+
+Creates a function that invokes the provided function with its arguments transformed.
+
+Use `Array.map()`to apply transforms to args in combination with the spread operator `(...)` to pass the transformed arguments to fn.
+
+```js
+const overArgs = (fn, transforms) => (...args) =>
+  fn(...args.map((val, i) => transforms[i](val)))
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+const square = n => n * n
+const double = n => n * 2
+const fn = overArgs((x, y) => [x, y], [square, double])
+fn(9, 3) // [81, 6]
 ```
 
 </details>
