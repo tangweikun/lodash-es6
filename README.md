@@ -200,3 +200,21 @@ const deepFlatten = arr =>
 ```js
 deepFlatten([1, [2], [[3], 4], 5]) // [1,2,3,4,5]
 ```
+
+### difference
+
+Returns the difference index between two arrays.
+
+```js
+const difference = (a, b) =>
+  Array.from({ length: Math.max(a.length, b.length) }).reduce(
+    (res, x, i) => (a[i] === b[i] ? res : [...res, i]),
+    [],
+  )
+```
+
+#### Examples
+
+```js
+difference([1, 2], [2, 1]) // [0, 1]
+```
