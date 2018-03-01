@@ -218,3 +218,21 @@ const difference = (a, b) =>
 ```js
 difference([1, 2], [2, 1]) // [0, 1]
 ```
+
+### differenceBy
+
+Returns the difference index between two arrays, after applying the provided function to each array element of both.
+
+```js
+export const differenceBy = (a, b, fn) =>
+  Array.from({ length: Math.max(a.length, b.length) }).reduce(
+    (res, x, i) => (fn(a[i]) === fn(b[i]) ? res : [...res, i]),
+    [],
+  )
+```
+
+#### Examples
+
+```js
+differenceBy([1, 2, 0, false, '0'], [3, 4, false, 1, 0], Boolean) // [3, 4]
+```
