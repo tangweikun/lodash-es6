@@ -185,3 +185,18 @@ const countOccurrences = (arr, val) => arr.reduce((a, v) => a + (v === val), 0)
 ```js
 countOccurrences([1, 1, 2, 1, 2, 3], 1) // 3
 ```
+
+### deepFlatten
+
+Deep flattens an array.
+
+```js
+const deepFlatten = arr =>
+  [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
+```
+
+#### Examples
+
+```js
+deepFlatten([1, [2], [[3], 4], 5]) // [1,2,3,4,5]
+```
