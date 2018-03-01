@@ -21,6 +21,7 @@
 <summary>View contents</summary>
 
 * [`chunk`](#chunk)
+* [`compact`](#compact)
 
 </details>
 
@@ -169,6 +170,27 @@ const chunk = (arr, size) =>
 
 ```js
 chunk([1, 2, 3, 4, 5], 2) // [[1,2],[3,4],[5]]
+```
+
+</details>
+
+<br>[⬆ Back to top](#table-of-contents)
+
+### compact
+
+Removes falsey values from an array.
+
+Use Array.filter() to filter out falsey values (false, null, 0, "", undefined, and NaN).
+
+```js
+const compact = arr => arr.filter(Boolean)
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]) // [ 1, 2, 3, 'a', 's', 34 ]
 ```
 
 </details>
