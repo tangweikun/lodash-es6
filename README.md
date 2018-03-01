@@ -224,7 +224,7 @@ difference([1, 2], [2, 1]) // [0, 1]
 Returns the difference index between two arrays, after applying the provided function to each array element of both.
 
 ```js
-export const differenceBy = (a, b, fn) =>
+const differenceBy = (a, b, fn) =>
   Array.from({ length: Math.max(a.length, b.length) }).reduce(
     (res, x, i) => (fn(a[i]) === fn(b[i]) ? res : [...res, i]),
     [],
@@ -235,4 +235,18 @@ export const differenceBy = (a, b, fn) =>
 
 ```js
 differenceBy([1, 2, 0, false, '0'], [3, 4, false, 1, 0], Boolean) // [3, 4]
+```
+
+### drop
+
+Returns a new array with n elements removed from the left.
+
+```js
+const drop = (arr, n = 1) => arr.slice(n)
+```
+
+#### Examples
+
+```js
+drop([1, 2, 3, 4], 2) // [3, 4]
 ```
