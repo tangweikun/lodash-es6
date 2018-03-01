@@ -264,3 +264,18 @@ const dropRight = (arr, n = 1) => arr.slice(0, -n)
 ```js
 drop([1, 2, 3, 4], 2) // [1, 2]
 ```
+
+### filterNonUnique
+
+Filters out the non-unique values in an array.
+
+```js
+const filterNonUnique = arr =>
+  arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i))
+```
+
+#### Examples
+
+```js
+filterNonUnique([1, 2, 2, 3, 4, 4, 5]) // [1,3,5]
+```
