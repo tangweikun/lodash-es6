@@ -250,3 +250,17 @@ const drop = (arr, n = 1) => arr.slice(n)
 ```js
 drop([1, 2, 3, 4], 2) // [3, 4]
 ```
+
+### dropRight
+
+Returns a new array with n elements removed from the right.
+
+```js
+const dropRight = (arr, n = 1) => arr.slice(0, -n)
+```
+
+#### Examples
+
+```js
+drop([1, 2, 3, 4], 2) // [1, 2]
+```
