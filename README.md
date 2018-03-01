@@ -10,6 +10,17 @@
 * [`ary`](#ary)
 * [`call`](#call)
 * [`over`](#over)
+* [`overArgs`](#overArgs)
+* [`pipeFunctions`](#pipeFunctions)
+
+</details>
+
+### 📚 Array
+
+<details>
+<summary>View contents</summary>
+
+* [`chunk`](#chunk)
 
 </details>
 
@@ -130,6 +141,34 @@ const add5 = x => x + 5
 const multiply = (x, y) => x * y
 const multiplyAndAdd5 = pipeFunctions(multiply, add5)
 multiplyAndAdd5(5, 2) // 15
+```
+
+</details>
+
+<br>[⬆ Back to top](#table-of-contents)
+
+## 📚 Array
+
+### chunk
+
+Performs left-to-right function composition.
+
+Chunks an array into smaller arrays of a specified size.
+
+Use `Array.from()` to create a new array, that fits the number of chunks that will be produced. Use `Array.slice()` to map each element of the new array to a chunk the length of size. If the original array can't be split evenly, the final chunk will contain the remaining elements.
+
+```js
+const chunk = (arr, size) =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+    arr.slice(i * size, i * size + size),
+  )
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+chunk([1, 2, 3, 4, 5], 2) // [[1,2],[3,4],[5]]
 ```
 
 </details>
