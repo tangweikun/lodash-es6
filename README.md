@@ -185,3 +185,19 @@ countBy(['one', 'two', 'three'], 'length') // {3: 2, 5: 1}
 ```
 
 <br>[⬆ Back to top](#table-of-contents)
+
+### countOccurrences
+
+Counts the occurrences of a value in an array.
+
+```js
+const countOccurrences = (arr, val) => arr.reduce((a, v) => a + (v === val), 0)
+```
+
+#### Examples
+
+```js
+countOccurrences([1, 1, 2, 1, 2, 3], 1) // 3
+```
+
+<br>[⬆ Back to top](#table-of-contents)
