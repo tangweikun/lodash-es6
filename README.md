@@ -43,8 +43,6 @@ const firstTwoMax = ary(Math.max, 2)
 ;[[2, 6, 'a'], [8, 4, 6], [10]].map(x => firstTwoMax(...x)) // [6, 8, 10]
 ```
 
-<br>[⬆ Back to top](#table-of-contents)
-
 ### call
 
 Given a key and a set of arguments, call them when given a context. Primarily useful in composition.
@@ -65,8 +63,6 @@ Promise.resolve([1, 2, 3])
   .then(console.log) //[ 2, 4, 6 ]
 ```
 
-<br>[⬆ Back to top](#table-of-contents)
-
 ### over
 
 Creates a function that invokes each provided function with the arguments it receives and returns the results.
@@ -81,8 +77,6 @@ const over = (...fns) => (...args) => fns.map(fn => fn.apply(null, args))
 const minMax = over(Math.min, Math.max)
 minMax(1, 2, 3, 4, 5) // [1,5]
 ```
-
-<br>[⬆ Back to top](#table-of-contents)
 
 ### overArgs
 
@@ -101,8 +95,6 @@ const double = n => n * 2
 const fn = overArgs((x, y) => [x, y], [square, double])
 fn(9, 3) // [81, 6]
 ```
-
-<br>[⬆ Back to top](#table-of-contents)
 
 ### pipeFunctions
 
@@ -145,8 +137,6 @@ const chunk = (arr, size) =>
 chunk([1, 2, 3, 4, 5], 2) // [[1,2],[3,4],[5]]
 ```
 
-<br>[⬆ Back to top](#table-of-contents)
-
 ### compact
 
 Removes falsey values from an array.
@@ -160,8 +150,6 @@ const compact = arr => arr.filter(Boolean)
 ```js
 compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]) // [ 1, 2, 3, 'a', 's', 34 ]
 ```
-
-<br>[⬆ Back to top](#table-of-contents)
 
 ### countBy
 
@@ -184,8 +172,6 @@ countBy([6.1, 4.2, 6.3], Math.floor) // {4: 1, 6: 2}
 countBy(['one', 'two', 'three'], 'length') // {3: 2, 5: 1}
 ```
 
-<br>[⬆ Back to top](#table-of-contents)
-
 ### countOccurrences
 
 Counts the occurrences of a value in an array.
@@ -199,5 +185,3 @@ const countOccurrences = (arr, val) => arr.reduce((a, v) => a + (v === val), 0)
 ```js
 countOccurrences([1, 1, 2, 1, 2, 3], 1) // 3
 ```
-
-<br>[⬆ Back to top](#table-of-contents)
