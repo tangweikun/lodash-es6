@@ -283,3 +283,20 @@ const findLastIndex = (arr, fn) =>
 // examples
 findLastIndex([1, 2, 3, 4], n => n % 2 === 1) // 2
 ```
+
+### flatten
+
+Flattens an array up to the specified depth.
+
+```js
+// source code
+const flatten = (arr, depth = 1) =>
+  [].concat(
+    ...arr.map(
+      v => (depth > 1 && Array.isArray(v) ? flatten(v, depth - 1) : v),
+    ),
+  )
+
+// examples
+flatten([1, [2], 3, 4]) // [1, 2, 3, 4]
+```
