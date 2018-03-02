@@ -31,6 +31,7 @@
 * [`dropRight`](#drorRight)
 * [`filterNonUnique`](#filternonunique)
 * [`findLast`](#findlast)
+* [`findLastIndex`](#findlastindex)
 
 </details>
 
@@ -268,4 +269,17 @@ const findLast = (arr, fn) => arr.filter(fn).slice(-1)[0]
 
 // examples
 findLast([1, 2, 3, 4], n => n % 2 === 1) // 3
+```
+
+### findLastIndex
+
+Return the index of the last element for which the provided function returns a truthy value.
+
+```js
+// source code
+const findLastIndex = (arr, fn) =>
+  arr.length - 1 - ~~arr.reverse().findIndex(fn)
+
+// examples
+findLastIndex([1, 2, 3, 4], n => n % 2 === 1) // 2
 ```
