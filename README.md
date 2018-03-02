@@ -10,8 +10,8 @@
 * [`ary`](#ary)
 * [`call`](#call)
 * [`over`](#over)
-* [`overArgs`](#overArgs)
-* [`pipeFunctions`](#pipeFunctions)
+* [`overArgs`](#overargs)
+* [`pipeFunctions`](#pipefunctions)
 
 </details>
 
@@ -22,7 +22,15 @@
 
 * [`chunk`](#chunk)
 * [`compact`](#compact)
-* [`countBy`](#countBy)
+* [`countBy`](#countby)
+* [`countOccurrences`](#countoccurrences)
+* [`deepFlatten`](#deepflatten)
+* [`difference`](#difference)
+* [`differenceBy`](#differenceby)
+* [`drop`](#drop)
+* [`dropRight`](#drorRight)
+* [`filterNonUnique`](#filternonunique)
+* [`findLast`](#findlast)
 
 </details>
 
@@ -33,12 +41,10 @@
 Creates a function that accepts up to `n` arguments, ignoring any additional arguments.
 
 ```js
+// source code
 const ary = (fn, n) => (...args) => fn(...args.slice(0, n))
-```
 
-#### Examples
-
-```js
+// examples
 const firstTwoMax = ary(Math.max, 2)
 ;[[2, 6, 'a'], [8, 4, 6], [10]].map(x => firstTwoMax(...x)) // [6, 8, 10]
 ```
@@ -48,12 +54,10 @@ const firstTwoMax = ary(Math.max, 2)
 Given a key and a set of arguments, call them when given a context. Primarily useful in composition.
 
 ```js
+// source code
 const call = (key, ...args) => context => context[key](...args)
-```
 
-#### Examples
-
-```js
+// examples
 Promise.resolve([1, 2, 3])
   .then(call('map', x => 2 * x))
   .then(console.log) //[ 2, 4, 6 ]
@@ -68,12 +72,10 @@ Promise.resolve([1, 2, 3])
 Creates a function that invokes each provided function with the arguments it receives and returns the results.
 
 ```js
+// source code
 const over = (...fns) => (...args) => fns.map(fn => fn.apply(null, args))
-```
 
-#### Examples
-
-```js
+// examples
 const minMax = over(Math.min, Math.max)
 minMax(1, 2, 3, 4, 5) // [1,5]
 ```
@@ -83,13 +85,11 @@ minMax(1, 2, 3, 4, 5) // [1,5]
 Creates a function that invokes the provided function with its arguments transformed.
 
 ```js
+// source code
 const overArgs = (fn, transforms) => (...args) =>
   fn(...args.map((val, i) => transforms[i](val)))
-```
 
-#### Examples
-
-```js
+// examples
 const square = n => n * n
 const double = n => n * 2
 const fn = overArgs((x, y) => [x, y], [square, double])
@@ -101,13 +101,11 @@ fn(9, 3) // [81, 6]
 Performs left-to-right function composition.
 
 ```js
+// source code
 const pipeFunctions = (...fns) =>
   fns.reduce((f, g) => (...args) => g(f(...args)))
-```
 
-#### Examples
-
-```js
+// examples
 const add5 = x => x + 5
 const multiply = (x, y) => x * y
 const multiplyAndAdd5 = pipeFunctions(multiply, add5)
@@ -125,15 +123,13 @@ Performs left-to-right function composition.
 Chunks an array into smaller arrays of a specified size.
 
 ```js
+// source code
 const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size),
   )
-```
 
-#### Examples
-
-```js
+// examples
 chunk([1, 2, 3, 4, 5], 2) // [[1,2],[3,4],[5]]
 ```
 
@@ -142,12 +138,10 @@ chunk([1, 2, 3, 4, 5], 2) // [[1,2],[3,4],[5]]
 Removes falsey values from an array.
 
 ```js
+// source code
 const compact = arr => arr.filter(Boolean)
-```
 
-#### Examples
-
-```js
+// examples
 compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]) // [ 1, 2, 3, 'a', 's', 34 ]
 ```
 
@@ -156,6 +150,7 @@ compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]) // [ 1, 2, 3, 'a',
 Groups the elements of an array based on the given function and returns the count of elements in each group.
 
 ```js
+// source code
 const countBy = (arr, fn) =>
   arr
     .map(typeof fn === 'function' ? fn : val => val[fn])
@@ -163,11 +158,8 @@ const countBy = (arr, fn) =>
       acc[val] = (acc[val] || 0) + 1
       return acc
     }, {})
-```
 
-#### Examples
-
-```js
+// examples
 countBy([6.1, 4.2, 6.3], Math.floor) // {4: 1, 6: 2}
 countBy(['one', 'two', 'three'], 'length') // {3: 2, 5: 1}
 ```
@@ -177,12 +169,10 @@ countBy(['one', 'two', 'three'], 'length') // {3: 2, 5: 1}
 Counts the occurrences of a value in an array.
 
 ```js
+// source code
 const countOccurrences = (arr, val) => arr.reduce((a, v) => a + (v === val), 0)
-```
 
-#### Examples
-
-```js
+// examples
 countOccurrences([1, 1, 2, 1, 2, 3], 1) // 3
 ```
 
@@ -191,13 +181,11 @@ countOccurrences([1, 1, 2, 1, 2, 3], 1) // 3
 Deep flattens an array.
 
 ```js
+// source code
 const deepFlatten = arr =>
   [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
-```
 
-#### Examples
-
-```js
+// examples
 deepFlatten([1, [2], [[3], 4], 5]) // [1,2,3,4,5]
 ```
 
@@ -206,16 +194,14 @@ deepFlatten([1, [2], [[3], 4], 5]) // [1,2,3,4,5]
 Returns the difference index between two arrays.
 
 ```js
+// source code
 const difference = (a, b) =>
   Array.from({ length: Math.max(a.length, b.length) }).reduce(
     (res, x, i) => (a[i] === b[i] ? res : [...res, i]),
     [],
   )
-```
 
-#### Examples
-
-```js
+// examples
 difference([1, 2], [2, 1]) // [0, 1]
 ```
 
@@ -224,16 +210,14 @@ difference([1, 2], [2, 1]) // [0, 1]
 Returns the difference index between two arrays, after applying the provided function to each array element of both.
 
 ```js
+// source code
 const differenceBy = (a, b, fn) =>
   Array.from({ length: Math.max(a.length, b.length) }).reduce(
     (res, x, i) => (fn(a[i]) === fn(b[i]) ? res : [...res, i]),
     [],
   )
-```
 
-#### Examples
-
-```js
+// examples
 differenceBy([1, 2, 0, false, '0'], [3, 4, false, 1, 0], Boolean) // [3, 4]
 ```
 
@@ -242,12 +226,10 @@ differenceBy([1, 2, 0, false, '0'], [3, 4, false, 1, 0], Boolean) // [3, 4]
 Returns a new array with n elements removed from the left.
 
 ```js
+// source code
 const drop = (arr, n = 1) => arr.slice(n)
-```
 
-#### Examples
-
-```js
+// examples
 drop([1, 2, 3, 4], 2) // [3, 4]
 ```
 
@@ -256,12 +238,10 @@ drop([1, 2, 3, 4], 2) // [3, 4]
 Returns a new array with n elements removed from the right.
 
 ```js
+// source code
 const dropRight = (arr, n = 1) => arr.slice(0, -n)
-```
 
-#### Examples
-
-```js
+// examples
 drop([1, 2, 3, 4], 2) // [1, 2]
 ```
 
@@ -270,12 +250,22 @@ drop([1, 2, 3, 4], 2) // [1, 2]
 Filters out the non-unique values in an array.
 
 ```js
+// source code
 const filterNonUnique = arr =>
   arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i))
+
+// examples
+filterNonUnique([1, 2, 2, 3, 4, 4, 5]) // [1,3,5]
 ```
 
-#### Examples
+### findLast
+
+Returns the last element for which the provided function return a truthy value.
 
 ```js
-filterNonUnique([1, 2, 2, 3, 4, 4, 5]) // [1,3,5]
+// source code
+const findLast = (arr, fn) => arr.filter(fn).slice(-1)[0]
+
+// examples
+findLast([1, 2, 3, 4], n => n % 2 === 1) // 3
 ```
