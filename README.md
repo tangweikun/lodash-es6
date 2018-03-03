@@ -39,6 +39,7 @@
 * [`longestItem`](#longestitem)
 * [`maxN`](#maxn)
 * [`permutations`](#permutations)
+* [`pull`](#pull)
 
 </details>
 
@@ -409,4 +410,24 @@ const permutations = arr => {
 
 // examples
 permutations([1, 33, 5]) // [ [ 1, 33, 5 ], [ 1, 5, 33 ], [ 33, 1, 5 ], [ 33, 5, 1 ], [ 5, 1, 33 ], [ 5, 33, 1 ] ]
+```
+
+### pull
+
+Mutates the original array to filter out the values specified.
+
+```js
+// source code
+const pull = (arr, ...args) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (args.includes(arr[i])) {
+      arr.splice(i, 1)
+      i--
+    }
+  }
+}
+
+// examples
+let myArray = ['a', 'b', 'c', 'a', 'b', 'c']
+pull(myArray, 'a', 'c') // myArray = [ 'b', 'b' ]
 ```
