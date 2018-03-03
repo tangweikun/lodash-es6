@@ -300,3 +300,20 @@ const flatten = (arr, depth = 1) =>
 // examples
 flatten([1, [2], 3, 4]) // [1, 2, 3, 4]
 ```
+
+### groupBy
+
+Groups the elements of an array based on the given function.
+
+```js
+// source code
+const groupBy = (arr, fn) =>
+  arr.reduce((acc, x) => {
+    const foo = typeof fn === 'function' ? fn(x) : x[fn]
+    acc[foo] = (acc[foo] || []).concat(x)
+    return acc
+  }, {})
+
+// examples
+groupBy([6.1, 4.2, 6.3], Math.floor) // { 4: [4.2], 6: [6.1, 6.3] }
+```
