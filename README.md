@@ -322,7 +322,7 @@ groupBy([6.1, 4.2, 6.3], Math.floor) // { 4: [4.2], 6: [6.1, 6.3] }
 
 ### indexOfAll
 
-Groups the elements of an array based on the given function.
+Return all indices of val in an array. If val never occurs, return [].
 
 ```js
 // source code
@@ -335,4 +335,19 @@ const indexOfAll = (arr, val) => {
 // examples
 indexOfAll([1, 2, 3, 1, 2, 3], 1) // [0,3]
 indexOfAll([1, 2, 3], 4) // []
+```
+
+### intersection
+
+Returns a list of elements that exist in both arrays.
+
+```js
+// source code
+const intersection = (a, b) => {
+  const s = new Set(b)
+  return a.filter(x => s.has(x))
+}
+
+// examples
+intersection([1, 2, 3], [4, 3, 2]) // [2,3]
 ```
