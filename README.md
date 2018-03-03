@@ -32,6 +32,8 @@
 * [`filterNonUnique`](#filternonunique)
 * [`findLast`](#findlast)
 * [`findLastIndex`](#findlastindex)
+* [`flatten`](#flatten)
+* [`groupBy`](#groupby)
 
 </details>
 
@@ -316,4 +318,21 @@ const groupBy = (arr, fn) =>
 
 // examples
 groupBy([6.1, 4.2, 6.3], Math.floor) // { 4: [4.2], 6: [6.1, 6.3] }
+```
+
+### indexOfAll
+
+Groups the elements of an array based on the given function.
+
+```js
+// source code
+const indexOfAll = (arr, val) => {
+  const indices = []
+  arr.forEach((el, i) => el === val && indices.push(i))
+  return indices
+}
+
+// examples
+indexOfAll([1, 2, 3, 1, 2, 3], 1) // [0,3]
+indexOfAll([1, 2, 3], 4) // []
 ```
