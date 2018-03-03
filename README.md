@@ -37,6 +37,7 @@
 * [`indexOfAll`](#indexofall)
 * [`intersection`](#intersection)
 * [`longestItem`](#longestitem)
+* [`maxN`](#maxn)
 
 </details>
 
@@ -370,4 +371,17 @@ longestItem(...['a', 'ab', 'abc']) // 'abc'
 longestItem(...['a', 'ab', 'abc'], 'abcd') // 'abcd'
 longestItem([1, 2, 3], [1, 2], [1, 2, 3, 4, 5]) // [1, 2, 3, 4, 5]
 longestItem([1, 2, 3], 'foobar') // 'foobar'
+```
+
+### maxN
+
+Return the n maximum elements from the provided array. If n is greater than or equal to the provided array's length, then return the original array(sorted in descending order).
+
+```js
+// source code
+const maxN = (arr, n = 1) => arr.sort((a, b) => b - a).slice(0, n)
+
+// examples
+maxN([1, 2, 3]) // [3]
+maxN([1, 2, 3], 2) // [3,2]
 ```
