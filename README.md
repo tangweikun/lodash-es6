@@ -34,6 +34,9 @@
 * [`findLastIndex`](#findlastindex)
 * [`flatten`](#flatten)
 * [`groupBy`](#groupby)
+* [`indexOfAll`](#indexofall)
+* [`intersection`](#intersection)
+* [`longestItem`](#longestitem)
 
 </details>
 
@@ -350,4 +353,21 @@ const intersection = (a, b) => {
 
 // examples
 intersection([1, 2, 3], [4, 3, 2]) // [2,3]
+```
+
+### longestItem
+
+Takes any number of iterable objects or objects with a length property and returns the longest one.
+
+```js
+// source code
+const longestItem = (...args) =>
+  args.reduce((acc, x) => (acc.length < x.length ? x : acc))
+
+// examples
+longestItem('this', 'is', 'a', 'testcase') // 'testcase'
+longestItem(...['a', 'ab', 'abc']) // 'abc'
+longestItem(...['a', 'ab', 'abc'], 'abcd') // 'abcd'
+longestItem([1, 2, 3], [1, 2], [1, 2, 3, 4, 5]) // [1, 2, 3, 4, 5]
+longestItem([1, 2, 3], 'foobar') // 'foobar'
 ```
