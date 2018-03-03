@@ -38,6 +38,7 @@
 * [`intersection`](#intersection)
 * [`longestItem`](#longestitem)
 * [`maxN`](#maxn)
+* [`permutations`](#permutations)
 
 </details>
 
@@ -384,4 +385,28 @@ const maxN = (arr, n = 1) => arr.sort((a, b) => b - a).slice(0, n)
 // examples
 maxN([1, 2, 3]) // [3]
 maxN([1, 2, 3], 2) // [3,2]
+```
+
+### permutations
+
+Generates all permutations of an array's elements (contains duplicates).
+
+```js
+// source code
+const permutations = arr => {
+  if (arr.length <= 2) return arr.length === 2 ? [arr, [arr[1], arr[0]]] : arr
+  return arr.reduce(
+    (acc, item, i) =>
+      acc.concat(
+        permutations([...arr.slice(0, i), ...arr.slice(i + 1)]).map(val => [
+          item,
+          ...val,
+        ]),
+      ),
+    [],
+  )
+}
+
+// examples
+permutations([1, 33, 5]) // [ [ 1, 33, 5 ], [ 1, 5, 33 ], [ 33, 1, 5 ], [ 33, 5, 1 ], [ 5, 1, 33 ], [ 5, 33, 1 ] ]
 ```

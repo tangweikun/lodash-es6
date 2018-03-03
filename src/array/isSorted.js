@@ -11,5 +11,5 @@ export const isSorted = arr => {
     }
     pre = arr[i]
   }
-  return direction
+  return pre === undefined ? 1 : direction
 }
