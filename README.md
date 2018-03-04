@@ -40,6 +40,7 @@
 * [`maxN`](#maxn)
 * [`permutations`](#permutations)
 * [`pull`](#pull)
+* [`reducedFilter`](#reducedfilter)
 
 </details>
 
@@ -430,4 +431,30 @@ const pull = (arr, ...args) => {
 // examples
 let myArray = ['a', 'b', 'c', 'a', 'b', 'c']
 pull(myArray, 'a', 'c') // myArray = [ 'b', 'b' ]
+```
+
+### reducedFilter
+
+Filter an array of objects based on a condition while also filtering out unspecified keys.
+
+```js
+// source code
+const reducedFilter = (data, keys, fn) =>
+  data.filter(fn).map(x => keys.reduce((acc, k) => ({ ...acc, [k]: x[k] }), {}))
+
+// examples
+const data = [
+  {
+    id: 1,
+    name: 'john',
+    age: 24,
+  },
+  {
+    id: 2,
+    name: 'mike',
+    age: 50,
+  },
+]
+
+reducedFilter(data, ['id', 'name'], item => item.age > 24) // [{ id: 2, name: 'mike'}]
 ```
