@@ -467,27 +467,26 @@ Return the lowest index at which value should be inserted into array in order to
 ```js
 // source code
 const sortedIndex = (arr, n) => {
-  const order = getOrder(arr)
-  if (order === 0) return 0
-
-  for (let j = 0; j < arr.length; j++) {
-    if (order * (arr[j] - n) >= 0) return j
-  }
-}
-
-const getOrder = arr => {
-  let i = 1
-
-  while (i < arr.length) {
-    if (arr[i] > arr[i - 1]) return 1
-    if (arr[i] < arr[i - 1]) return -1
-    i++
-  }
-
-  return 0
+  const difference = arr.length <= 1 ? 0 : arr[arr.length - 1] - arr[0]
+  return difference === 0 ? 0 : arr.findIndex(x => difference * (x - n) >= 0)
 }
 
 // examples
 sortedIndex([5, 3, 2, 1], 4) // 1
 sortedIndex([30, 50], 40) // 1
+```
+
+### symmetricDifference
+
+Return the symmetric difference between two arrays.
+
+```js
+// source code
+const symmetricDifference = (a, b) => [
+  ...a.filter(x => !b.includes(x)),
+  ...b.filter(x => !a.includes(x)),
+]
+
+// examples
+symmetricDifference([1, 2, 3], [1, 2, 4]) // [3,4]
 ```
