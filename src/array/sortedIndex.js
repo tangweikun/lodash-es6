@@ -1,10 +1,6 @@
 export const sortedIndex = (arr, n) => {
   const order = getOrder(arr)
-  if (order === 0) return 0
-
-  for (let j = 0; j < arr.length; j++) {
-    if (order * (arr[j] - n) >= 0) return j
-  }
+  return order === 0 ? 0 : arr.findIndex(x => order * (x - n) >= 0)
 }
 
 const getOrder = arr => {

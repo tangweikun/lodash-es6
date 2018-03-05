@@ -41,6 +41,7 @@
 * [`permutations`](#permutations)
 * [`pull`](#pull)
 * [`reducedFilter`](#reducedfilter)
+* [`sortedIndex`](#sortedindex)
 
 </details>
 
@@ -457,4 +458,36 @@ const data = [
 ]
 
 reducedFilter(data, ['id', 'name'], item => item.age > 24) // [{ id: 2, name: 'mike'}]
+```
+
+### sortedIndex
+
+Return the lowest index at which value should be inserted into array in order to maintain its sort order.
+
+```js
+// source code
+const sortedIndex = (arr, n) => {
+  const order = getOrder(arr)
+  if (order === 0) return 0
+
+  for (let j = 0; j < arr.length; j++) {
+    if (order * (arr[j] - n) >= 0) return j
+  }
+}
+
+const getOrder = arr => {
+  let i = 1
+
+  while (i < arr.length) {
+    if (arr[i] > arr[i - 1]) return 1
+    if (arr[i] < arr[i - 1]) return -1
+    i++
+  }
+
+  return 0
+}
+
+// examples
+sortedIndex([5, 3, 2, 1], 4) // 1
+sortedIndex([30, 50], 40) // 1
 ```
