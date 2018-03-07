@@ -52,6 +52,7 @@
 <summary>View contents</summary>
 
 * [`compose`](#compose)
+* [`composeRight`](#composeright)
 
 </details>
 
@@ -516,4 +517,20 @@ const add5 = x => x + 5
 const multiply = (x, y) => x * y
 const multiplyAndAdd5 = compose(add5, multiply)
 multiplyAndAdd5(5, 2) // 15
+```
+
+### composeRight
+
+Performs left-to-right function composition.
+
+```js
+// source code
+const composeRight = (...fns) =>
+  fns.reduce((f, g) => (...args) => g(f(...args)))
+
+// examples
+const add = (x, y) => x + y
+const square = x => x * x
+const addAndSquare = composeRight(add, square)
+addAndSquare(1, 2) // 9
 ```
