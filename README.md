@@ -42,6 +42,16 @@
 * [`pull`](#pull)
 * [`reducedFilter`](#reducedfilter)
 * [`sortedIndex`](#sortedindex)
+* [`symmetricDifference`](#symmetricdifference)
+
+</details>
+
+### 🎛️ Function
+
+<details>
+<summary>View contents</summary>
+
+* [`compose`](#compose)
 
 </details>
 
@@ -489,4 +499,21 @@ const symmetricDifference = (a, b) => [
 
 // examples
 symmetricDifference([1, 2, 3], [1, 2, 4]) // [3,4]
+```
+
+## 🎛️ Function
+
+### compose
+
+Performs right-to-left function composition.
+
+```js
+// source code
+const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)))
+
+// examples
+const add5 = x => x + 5
+const multiply = (x, y) => x * y
+const multiplyAndAdd5 = compose(add5, multiply)
+multiplyAndAdd5(5, 2) // 15
 ```
