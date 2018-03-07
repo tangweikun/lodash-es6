@@ -534,3 +534,17 @@ const square = x => x * x
 const addAndSquare = composeRight(add, square)
 addAndSquare(1, 2) // 9
 ```
+
+### curry
+
+Curries a function.
+
+```js
+// source code
+const curry = (fn, arity = fn.length, ...args) =>
+  arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args)
+
+// examples
+curry(Math.pow)(2)(10) // 1024
+curry(Math.min, 3)(10)(50)(2) // 2
+```
