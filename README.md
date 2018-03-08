@@ -623,3 +623,26 @@ const deepClone = obj => {
 const a = { foo: 'bar', obj: { a: 1, b: 2 } }
 const b = deepClone(a) // a !== b, a.obj !== b.obj
 ```
+
+### equals
+
+Performs a deep comparison between two values to determine if they are equivalent.
+
+```js
+// source code
+const deepClone = obj => {
+  const clone = {}
+  Object.entries(clone).forEach(
+    ([key, value]) =>
+      (clone[key] = typeof value === 'object' ? deepClone(value) : value),
+  )
+
+  return clone
+}
+
+// examples
+equals(
+  { a: [2, { e: 3 }], b: [4], c: 'foo' },
+  { a: [2, { e: 3 }], b: [4], c: 'foo' },
+) // true
+```
