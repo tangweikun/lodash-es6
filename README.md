@@ -67,6 +67,15 @@
 
 </details>
 
+### 🗃️ Object
+
+<details>
+<summary>View contents</summary>
+
+* [`deepClone`](#deepclone)
+
+</details>
+
 ## 🔌 Adapter
 
 ### ary
@@ -590,4 +599,27 @@ const fibonacci = n =>
 
 // examples
 fibonacci(6) // [0, 1, 1, 2, 3, 5]
+```
+
+## 🗃️ Object
+
+### deepClone
+
+Creates a deep clone of an object.
+
+```js
+// source code
+const deepClone = obj => {
+  const clone = {}
+  Object.entries(clone).forEach(
+    ([key, value]) =>
+      (clone[key] = typeof value === 'object' ? deepClone(value) : value),
+  )
+
+  return clone
+}
+
+// examples
+const a = { foo: 'bar', obj: { a: 1, b: 2 } }
+const b = deepClone(a) // a !== b, a.obj !== b.obj
 ```
