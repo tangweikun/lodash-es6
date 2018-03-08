@@ -63,6 +63,7 @@
 <summary>View contents</summary>
 
 * [`average`](#average)
+* [`fibonacci`](#fibonacci)
 
 </details>
 
@@ -573,4 +574,20 @@ const average = (...nums) =>
 // examples
 average(...[1, 2, 3]) // 2
 average(1, 2, 3) // 2
+```
+
+### fibonacci
+
+Generates an array, containing the Fibonacci sequence, up until the nth term.
+
+```js
+// source code
+const fibonacci = n =>
+  Array.from({ length: n }).reduce(
+    (acc, val, i) => acc.concat(i > 1 ? acc[i - 1] + acc[i - 2] : i),
+    [],
+  )
+
+// examples
+fibonacci(6) // [0, 1, 1, 2, 3, 5]
 ```
