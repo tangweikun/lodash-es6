@@ -53,6 +53,16 @@
 
 * [`compose`](#compose)
 * [`composeRight`](#composeright)
+* [`curry`](#curry)
+
+</details>
+
+### ➗ Math
+
+<details>
+<summary>View contents</summary>
+
+* [`average`](#average)
 
 </details>
 
@@ -547,4 +557,20 @@ const curry = (fn, arity = fn.length, ...args) =>
 // examples
 curry(Math.pow)(2)(10) // 1024
 curry(Math.min, 3)(10)(50)(2) // 2
+```
+
+## ➗ Math
+
+### average
+
+Returns the average of two or more numbers.
+
+```js
+// source code
+const average = (...nums) =>
+  nums.reduce((acc, val) => acc + val, 0) / nums.length
+
+// examples
+average(...[1, 2, 3]) // 2
+average(1, 2, 3) // 2
 ```
