@@ -646,3 +646,7 @@ equals(
   { a: [2, { e: 3 }], b: [4], c: 'foo' },
 ) // true
 ```
+
+## Collaborators
+
+[<img src="https://github.com/tangweikun.png" width="100px;"/>](https://github.com/tangweikun)<br/> [<sub>weikun tang</sub>](https://github.com/tangweikun)
