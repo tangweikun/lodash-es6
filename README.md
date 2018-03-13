@@ -43,6 +43,7 @@
 * [`reducedFilter`](#reducedfilter)
 * [`sortedIndex`](#sortedindex)
 * [`symmetricDifference`](#symmetricdifference)
+* [`concat`](#concat)
 
 </details>
 
@@ -520,6 +521,19 @@ const symmetricDifference = (a, b) => [
 
 // examples
 symmetricDifference([1, 2, 3], [1, 2, 4]) // [3,4]
+```
+
+### concat
+
+Creates a new array concatenating array with any additional arrays and/or values.
+
+```js
+// source code
+const concat = (...args) =>
+  args.reduce((acc, x) => (Array.isArray(x) ? [...acc, ...x] : [...acc, x]), [])
+
+// examples
+concat([1], 2, [3], [[4]]) // [1, 2, 3, [4]]
 ```
 
 ## 🎛️ Function

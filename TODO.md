@@ -6,3 +6,4 @@
 * [] delay
 * [] memoize
 * [] throttle
+* [] 构建发布到 npm
