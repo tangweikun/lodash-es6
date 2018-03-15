@@ -7,3 +7,4 @@
 * [] memoize
 * [] throttle
 * [] 构建发布到 npm
+* [] 统一的入参错误处理
