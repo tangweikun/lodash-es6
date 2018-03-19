@@ -6,7 +6,7 @@
 export const groupBy = (arr, fn = x => x) =>
   arr.reduce((res, el) => {
     const foo = typeof fn === 'function' ? fn(el) : el[fn]
-    if (res[foo]) res[foo].push(el)
-    else res[foo] = [el]
+    res[foo] = res[foo] || []
+    res[foo].push(el)
     return res
   }, {})
